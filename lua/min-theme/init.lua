@@ -1,11 +1,28 @@
 local colors = require("min-theme.colors")
 local config = require("min-theme.config")
 local utils = require("min-theme.utils")
-local bufferline = require("min-theme.integrations.bufferline")
-local cmp = require("min-theme.integrations.cmp")
-local telescope = require("min-theme.integrations.telescope")
-local neotree = require("min-theme.integrations.neo-tree")
-local whichkey = require("min-theme.integrations.whichkey")
+
+local integrations = {
+	"min-theme.integrations.bufferline",
+	"min-theme.integrations.cmp",
+	"min-theme.integrations.telescope",
+	"min-theme.integrations.neo-tree",
+	"min-theme.integrations.whichkey",
+	"min-theme.integrations.gitsigns",
+	"min-theme.integrations.markview",
+	"min-theme.integrations.neogit",
+	"min-theme.integrations.spectre",
+}
+
+-- Load integrations dynamically
+local loaded_integrations = {}
+for _, integration in ipairs(integrations) do
+	table.insert(loaded_integrations, require(integration))
+end
+
+-- Optionally, assign them to specific variables for backward compatibility
+local bufferline, cmp, telescope, neotree, whichkey, gitsigns, markview, neogit, spectre = unpack(loaded_integrations)
+
 local min = {}
 
 local function set_terminal_colors()
@@ -73,9 +90,9 @@ local function set_groups()
 		NormalFloat = { bg = colors.bgFloat },
 		NormalNC = { link = "Normal" },
 		Pmenu = { link = "NormalFloat" },
-		PmenuSel = { bg = colors.bgOption },
-		PmenuSbar = { bg = utils.shade(colors.blue, 0.5, colors.bg) },
-		PmenuThumb = { bg = utils.shade(colors.bg, 0.20) },
+		PmenuSel = { bg = utils.shade(colors.blue, 0.2, colors.bg) },
+		PmenuSbar = { bg = colors.bg },
+		PmenuThumb = { bg = colors.bg },
 		Question = { fg = colors.blue },
 		QuickFixLine = { fg = colors.blue },
 		SpecialKey = { fg = colors.symbol },
@@ -288,11 +305,23 @@ local function set_groups()
 		["@lsp.typemod.function.readonly"] = { link = "@function" },
 	}
 
-	-- integrations
-	groups = vim.tbl_extend("force", groups, cmp.highlights())
-	groups = vim.tbl_extend("force", groups, telescope.highlights())
-	groups = vim.tbl_extend("force", groups, neotree.highlights())
-	groups = vim.tbl_extend("force", groups, whichkey.highlights())
+	-- Define integrations as an array
+	local integrations_groups = {
+		cmp.highlights(),
+		telescope.highlights(),
+		neotree.highlights(),
+		whichkey.highlights(),
+		gitsigns.highlights(),
+		markview.highlights(),
+		neogit.highlights(),
+		spectre.highlights(),
+	}
+
+	-- Merge all integration groups into 'groups'
+	for _, integration in ipairs(integrations_groups) do
+		groups = vim.tbl_extend("force", groups, integration)
+	end
+
 	-- overrides
 	groups =
 		vim.tbl_extend("force", groups, type(config.overrides) == "function" and config.overrides() or config.overrides)
