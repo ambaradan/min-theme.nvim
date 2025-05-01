@@ -4,8 +4,8 @@ local M = {}
 function M.highlights()
 	return {
 		NeoTreeFloatBorder = { fg = colors.border, bg = colors.bg },
-		NeoTreeNormal = { bg = colors.bgDark },
-		NeoTreeEndOfBuffer = { bg = colors.bgDark },
+		NeoTreeNormal = { bg = colors.bg },
+		NeoTreeEndOfBuffer = { bg = colors.bg },
 		NeoTreeIndentMarker = { fg = colors.bgDarker },
 		NeoTreeFloatTitle = { fg = colors.blue, bg = colors.bg },
 		NeoTreeDirectoryIcon = { fg = colors.blue },
