@@ -11,7 +11,7 @@ function M.highlights()
 		MarkviewHeading4 = { fg = utils.shade(colors.blue, 0.70), bold = true, underline = true },
 		MarkviewHeading5 = { fg = utils.shade(colors.red, 0.70), bold = true, underline = true },
 		MarkviewHeading6 = { fg = utils.shade(colors.purple, 0.70), bold = true, underline = true },
-		MarkviewCodeInfo = { fg = utils.shade(colors.purple, 0.50), bg = colors.none },
+		MarkviewCodeInfo = { fg = utils.shade(colors.purple, 0.30), bg = colors.none },
 		MarkviewHyperlink = { fg = colors.blue },
 		-- markdown 'hl'
 		markdownBold = { fg = colors.fgCommand, bold = true },

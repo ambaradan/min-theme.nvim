@@ -1,4 +1,6 @@
 local colors = require("min-theme.colors")
+local utils = require("min-theme.utils")
+
 local M = {}
 
 function M.highlights()
@@ -8,8 +10,8 @@ function M.highlights()
 		NeoTreeEndOfBuffer = { bg = colors.bg },
 		NeoTreeIndentMarker = { fg = colors.bgDarker },
 		NeoTreeFloatTitle = { fg = colors.blue, bg = colors.bg },
-		NeoTreeDirectoryIcon = { fg = colors.blue },
-		NeoTreeDirectoryName = { fg = colors.blueLight, bold = true },
+		NeoTreeDirectoryIcon = { fg = colors.yellowDark },
+		NeoTreeDirectoryName = { fg = colors.fgSelection },
 	}
 end
 

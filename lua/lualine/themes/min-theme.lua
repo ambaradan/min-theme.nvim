@@ -8,8 +8,8 @@ local bg = config.transparent and "NONE" or colors.bg
 
 min.normal = {
 	a = { bg = utils.shade(colors.yellowDark, 0.80), fg = colors.bg, gui = "bold" },
-	b = { bg = utils.shade(colors.bgDark, 0.85), fg = colors.fg },
-	c = { bg = utils.shade(colors.bgDark, 0.95), fg = colors.bg },
+	b = { bg = utils.shade(colors.bgDarker, 0.95), fg = colors.fg },
+	c = { bg = utils.shade(colors.bgDark, 0.95), fg = colors.fg },
 	x = { bg = utils.shade(colors.bgDark, 0.95), fg = colors.fgDisabled },
 	y = { bg = utils.shade(colors.bgDark, 0.95), fg = colors.fgDisabled },
 }
